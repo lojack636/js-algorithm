@@ -2,6 +2,11 @@
 ! 零、二分查找框架
 ! 只要数组有序，就应该想到双指针技巧(二分查找)。
 */
+
+
+//! 二分查找返回目标值 val 的索引，对于搜索左侧边界的二分查找，有一个特殊性质：
+//!  当 val 不存在时，得到的索引恰好是比 val 大的最小元素索引。
+
 function binarySearch(nums,target) {
   let left = 0, right = '...';
 
@@ -164,3 +169,62 @@ function right_bound(nums, target) {
       return -1;
   return right;
 }
+
+
+
+// *  例题！！！！！！！    和392判断子序列完全一致
+/* 
+在前文 二分查找详解 中，详解了如何正确写出三种二分查找算法的细节。
+二分查找返回目标值 val 的索引，对于搜索左侧边界的二分查找，有一个特殊性质：
+当 val 不存在时，得到的索引恰好是比 val 大的最小元素索引。
+什么意思呢，就是说如果在数组 [0,1,3,4] 中搜索元素 2，算法会返回索引 2，
+也就是元素 3 的位置，元素 3 是数组中大于 2 的最小元素。
+所以我们可以利用二分搜索避免线性扫描。
+
+*/
+// 查找左侧边界的二分查找
+
+// ! 二分法        ------通过构建数组对应表,或者Map集来进行快速定位，避免大范围的遍历
+function isSubsequence(s, t) {
+    let m = s.length, n = t.length;
+    let index = new Map();
+    // 先记下 t 中每个字符出现的位置
+    for (let i = 0; i < n; i++) {
+        let c = t.charAt(i);
+        if (!index.has(c)){
+          index.set(c,[]) 
+        }
+        let temp=index.get(c)
+        temp.push(i);
+        index.set(c,temp)
+      }
+  
+        // 串 t 上的指针
+        let j = 0;
+        // 借助 index 查找 s[i]
+        for (let i = 0; i < m; i++) {
+            let c = s.charAt(i);
+            // 整个 t 压根儿没有字符 c
+            if (!index.has(c)) return false;
+            let pos = left_bound([...index.get(c)], j);
+            // 二分搜索区间中没有找到字符 c
+            if (pos == [...index.get(c)].length) return false;
+            // 向前移动指针 j
+            j = [...index.get(c)][pos] + 1;
+        }
+        return true;
+  }
+  
+  function left_bound(arr, tar) {
+    let lo = 0, hi = arr.length-1;
+    while (lo <= hi) {
+        let mid = Math.floor(lo + (hi - lo) / 2);
+        if (tar > arr[mid]) {
+            lo = mid- 1;
+        } else {
+            hi = mid;
+        } 
+    }
+    return lo;
+  }
+  

@@ -56,6 +56,17 @@ function traverse( head) {
   traverse(head.next)
 }
 
+// * 2--倒序打印单链表
+
+/* 倒序打印单链表中的元素值 */
+function traverse(head) {
+  if (head == null) return;
+  traverse(head.next);
+  // 后序遍历代码
+  console.log(head.val);
+}
+
+
 
 //* 3.二叉树遍历框架，典型的非线性递归遍历结构：
 
