@@ -1,5 +1,5 @@
 /* https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/tan-xin-suan-fa-zhi-qu-jian-tiao-du-wen-ti
-
+区间调度问题
 正确的思路其实很简单，可以分为以下三步：
 1.从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
 2.把所有与 x 区间相交的区间从区间集合 intvs 中删除。
