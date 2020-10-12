@@ -72,6 +72,22 @@ Math.sign(); // NaN
 
 // const x= Math.round(Math.random()*10)  //四舍五入取整数
 // console.log(x)
+//! [0, 1) 
+Math.random();
+
+// ! 获取 [a,b)   -----用的最多      
+Math.floor((Math.random()*(b-a))+a)
+
+// ! 获取[a,b]随机数 
+Math.floor((Math.random()*(b+1-a))+a)  //保证能取到b 
+
+// ! 获取 (a,b]  
+Math.floor( (Math.random()*(b+1-a))+a+1)
+
+// ! 获取 (a,b)
+Math.floor((Math.random()*(b-a))+a+1) //Math.random(b)本身就取不到b
+
+
 
 // * Math.sqrt()  返回数字的平方根
 

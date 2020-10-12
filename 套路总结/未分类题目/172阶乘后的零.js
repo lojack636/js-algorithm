@@ -1,3 +1,27 @@
+// 1、输入一个非负整数 n，请你计算阶乘 n! 的结果末尾有几个 0。
+// > LeetCode 172阶乘后的零
+function trailingZeroes(n) {
+  let res = 0;
+  let divisor = 5;
+  while (divisor <= n) {
+      res += Math.floor(n / divisor);
+      divisor *= 5;
+  }
+  return res;
+}
+// ! 简化后
+function trailingZeroes(n) {
+  let res = 0;
+  for (let d = n; d / 5 > 0; d = d / 5) {
+      res += Math.floor(d / 5);
+  }
+  return res;
+}
+
+// ==============================================================
+
+// > LeetCode 793 阶乘后K个零
+
 // 现在是给你一个非负整数 K，问你有多少个 n，使得 n! 结果末尾有 K 个 0。
 // 前文 二分查找如何运用 说过，对于这种具有单调性的函数，用 for 循环遍历，可以用二分查找进行降维打击，对吧？
 
