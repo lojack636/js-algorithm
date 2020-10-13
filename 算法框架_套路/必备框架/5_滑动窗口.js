@@ -4,15 +4,14 @@
 // !  1.滑动窗口基础模板
 function slideWindow(){
   let left = 0, right = 0;
-  while (right < s.size()) {
+  while (right < s.length) {
       // 增大窗口
       window.push(s[right]);
       right++;
 
       while ('window needs shrink') {
           // 缩小窗口
-          window.pop(s[left]);
-          left++;
+          window.shift()
       }
   }
 }
@@ -44,10 +43,8 @@ function slidingWindow(s, t) {
       // 判断左侧窗口是否要收缩
       while ('window needs shrink') {
           // d 是将移出窗口的字符
-          // let del = s[left];
           let del=s.shift()
           // 左移窗口
-          left++;
           // 进行窗口内数据的一系列更新
           // !   ...
       }

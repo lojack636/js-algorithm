@@ -100,3 +100,45 @@ function traverse(root){
 //* 5. N 叉树的遍历又可以扩展为图的遍历，因为图就是好几 N 叉棵树的结合体。
 //*    你说图是可能出现环的？这个很好办，用个布尔数组 visited 做标记就行了
 
+// ! 先刷二叉树，先刷二叉树，先刷二叉树！
+
+// 例如： 二叉树中的最大路径和就是用递归
+const maxPathSum = (root) => {
+  let maxSum = Number.MIN_SAFE_INTEGER; // 最大路径和
+  const dfs = (root) => {
+    if (root == null) return 0;   // 遍历到null节点，返回0;
+    
+    const left = Math.max(0, dfs(root.left));   // 左子树提供的最大收益
+    const right = Math.max(0, dfs(root.right)); // 右子树提供的最大收益
+     maxSum=Math.max(maxSum,left+right+root.val);
+
+    return  Math.max(left,right)+root.val //返回节点贡献的最大值
+  };
+
+  dfs(root); // 递归的入口
+  return maxSum;
+};
+
+
+//! 举例2
+// 99. 恢复二叉搜索树
+const recoverTree = (root) => {
+  let prev = new TreeNode(-Infinity);
+  let s;//错误1
+  let t; //错误2
+  function traverse(node) {
+    if (!node) return;
+    traverse(node.left);
+    if (node.val < prev.val) {
+        s = (s == null) ? prev : s;//记录第一个错误
+        t = node; //记录错误2
+    }
+    prev = node; //更新prev
+    traverse(node.right);
+  }
+  traverse(root)
+  // > 交换s.val和t.val  swap这两个错误
+  const temp = s.val;
+  s.val = t.val;
+  t.val = temp; 
+};

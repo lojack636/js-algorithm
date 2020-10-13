@@ -14,6 +14,7 @@
 说明链表不含环；如果含有环，快指针最终会超慢指针一圈，和慢指针相遇，说明链表含有环。
 
 */
+// >只走一圈
 function hasCycle(head) {
   let fast, slow;
   fast = slow = head;
@@ -34,6 +35,7 @@ function detectCycle(head) {
       slow = slow.next;
       if (fast == slow) break;
   }
+  // >这个while结束时fast就在末尾
   // 上面的代码类似 hasCycle 函数
   // 在相遇点，让slow从头开始和fast齐头并进，重新相遇的地方就是环的起点
   slow = head;
@@ -106,6 +108,7 @@ function reverse(nums) {
   let left = 0;
   let right = nums.length - 1;
   while (left < right) {
+    // # swap left---right
       let temp = nums[left];
       nums[left] = nums[right];
       nums[right] = temp;
@@ -115,4 +118,5 @@ function reverse(nums) {
 
 
 // ! 4、滑动窗口算法
-// 这也许是双指针技巧的最高境界了，如果掌握了此算法，可以解决一大类子字符串匹配的问题，不过「滑动窗口」稍微比上述的这些算法复杂些。
+// 这也许是双指针技巧的最高境界了，如果掌握了此算法，可以解决一大类子字符串匹配的问题，
+// 不过「滑动窗口」稍微比上述的这些算法复杂些。

@@ -1,7 +1,4 @@
 
-
-
-
 const swapSort = (arr) => {
   const len = arr.length
   for (let j = 0; j < len; j++) {

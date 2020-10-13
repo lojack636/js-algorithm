@@ -52,9 +52,10 @@ function canFinish(piles,speed,H) {
   }
   return (time <= H);
 }
-
+// piles = [30,11,23,4,20]  speed 23
 function timeOf(n,speed) {
-  let temp= (n / speed) + ((n % speed > 0) ? 1 : 0);
+  // 吃不完，下一顿吃，加两个小时；吃完了，1个小时
+  let temp= (n / speed) + ((n % speed > 0) ? 1 : 0);//总有刚好吃完的时候
   return Math.floor(temp)
 }
 console.log(minEatingSpeed([30,11,23,4,20],5));//30
@@ -120,7 +121,7 @@ function shipWithinDays(weights,D) {
   while(left <= right) {
       let mid = Math.floor(left + (right - left) / 2);
       if (canFinish(weights, D, mid)) {
-          right = mid-1;
+          right = mid-1;//! 锁定边界
       } else {
           left = mid + 1;
       }

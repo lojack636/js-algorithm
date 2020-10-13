@@ -1,20 +1,20 @@
 /* 
 > 归并排序，典型的分治算法；分治，典型的递归结构。
 
-*分治算法可以分三步走：分解 -> 解决 -> 合并
-*   1.分解原问题为结构相同的子问题。
-*   2.分解到某个容易求解的边界之后，进行第归求解。
-*   3.将子问题的解合并成原问题的解。
+# 分治算法可以分三步走：分解 -> 解决 -> 合并
+#   1.分解原问题为结构相同的子问题。
+#   2.分解到某个容易求解的边界之后，进行第归求解。
+#   3.将子问题的解合并成原问题的解。
 
 
 > 举例： 归并排序问题
-function merge_sort(一个数组) {
-    if (可以很容易处理) return;
-    merge_sort(左半个数组);
-    merge_sort(右半个数组);
-    merge(左半个数组, 右半个数组);
-}
 */
+function merge_sort(一个数组) {
+      if (可以很容易处理) return;
+      merge_sort(左半个数组);
+      merge_sort(右半个数组);
+      merge(左半个数组, 右半个数组);
+  }
 /* 
 好了，这个算法也就这样了，完全没有任何难度。
 记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。
@@ -24,7 +24,7 @@ function merge_sort(一个数组) {
 至于merge函数，参考两个有序链表的合并，简直一模一样，
 */
 
-
+//> JS 归并排序
 let list=[2,1,3,6,10,100,-20,-1]
 const mergeSort=(arr)=>{
   const len=arr.length
@@ -60,7 +60,7 @@ mergeSort(list);
 你看这是不是二叉树的后序遍历框架？另外，这不就是传说中的分治算法嘛，不过如此呀。
 */
 function sort(nums,low,high) {
-  let mid = (low + high) / 2;
+  let mid = Math.floor((low + high) / 2);
   sort(nums, low, mid);
   sort(nums, mid + 1, high);
 

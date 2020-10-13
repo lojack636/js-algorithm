@@ -2,7 +2,7 @@
 ! 零、二分查找框架
 ! 只要数组有序，就应该想到双指针技巧(二分查找)。
 */
-
+// > 二分法可以优化线性扫描
 
 //! 二分查找返回目标值 val 的索引，对于搜索左侧边界的二分查找，有一个特殊性质：
 //!  当 val 不存在时，得到的索引恰好是比 val 大的最小元素索引。
@@ -62,7 +62,7 @@ function binarySearch(nums,target) {
 // nums = [1,2,2,2,3]，target 为 2
 //  nums = [2,3,5,7], target = 8，
 
-// ! 方法1   [ ) 区间查找
+// ! 方法1   [ ) 区间查找 左临界值
 function left_bound(nums,target) {
   if (nums.length == 0) return -1;
   let left = 0;
@@ -112,7 +112,7 @@ return left;
 
 
 
-//!   归一  
+//!   归一  [ ]
 
 function binary_search(nums,target) {
   let left = 0, right = nums.length - 1; 
@@ -131,7 +131,7 @@ function binary_search(nums,target) {
   return -1;
 }
 
-// 查找左临界值
+//> 查找左临界值
 function left_bound(nums, target) {
   let left = 0, right = nums.length - 1;
   while (left <= right) {
@@ -141,8 +141,7 @@ function left_bound(nums, target) {
       } else if (nums[mid] > target) {
           right = mid - 1;
       } else if (nums[mid] == target) {
-          //! 别返回，锁定左侧边界
-          right = mid - 1;
+          right = mid - 1; //! 别返回，锁定左侧边界
       }
   }
   // 最后要检查 left 越界的情况
@@ -160,8 +159,7 @@ function right_bound(nums, target) {
       } else if (nums[mid] > target) {
           right = mid - 1;
       } else if (nums[mid] == target) {
-          //! 别返回，锁定右侧边界
-          left = mid + 1;
+        left = mid + 1;  //! 别返回，锁定右侧边界   
       }
   }
   // 最后要检查 right 越界的情况

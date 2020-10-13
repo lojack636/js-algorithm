@@ -50,7 +50,7 @@ function dp(nums,start) {
     return res;
 }
 
-// ! 方法2   --自底向上
+// ! 方法2   --自底向上  ------动态规划
 // * 从右向左计算，因为要留有空余的0进行递推
 function rob(nums) {
   let n = nums.length;
@@ -146,7 +146,7 @@ const dp=(root)=>{
   // 抢，下两家就不能抢了
   let rob = root.val + left[0] + right[0];
   // 不抢，下家可抢可不抢，取决于收益大小
-  let not_rob = Math.max(left[0], left[1])
+  let not_rob = Math.max(left[0], left[1])  // [0,1]分别表示左右树的价值
               + Math.max(right[0], right[1]);
 
   return [not_rob, rob];
