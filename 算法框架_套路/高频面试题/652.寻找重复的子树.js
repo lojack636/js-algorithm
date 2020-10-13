@@ -22,6 +22,7 @@ function findDuplicateSubtrees(root) {
       let right = traverse(root.right);
 
       let subTree = left + "," + right+ "," + root.val;
+      // 没出现过设为0，出现过设置+1
       if(!memo.has(subTree)){memo.set(subTree,0),freq=0;}
       else{freq=memo.get(subTree)}
       if (freq == 1) res.push(root); // 多次重复也只会被加入结果集一次
