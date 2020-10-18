@@ -31,3 +31,20 @@ var nthUglyNumber = function(n) {
   }
   return dp[n - 1];
 };
+
+const nthUglyNumber=(n)=>{
+    const dp=new Array(n).fill(0);
+    dp[0]=1;
+    let factor2=0,factor3=0,factor5=0;
+    for(let i=1;i<n;i++){
+        let n2=dp[factor2]*2
+        let n3=dp[factor3]*3
+        let n5=dp[factor5]*5
+        // 每下一个数，必定是2,3，5的乘积；
+        dp[i]=Math.min(n2,n3,n5);
+        if(dp[i]===n2)  factor2++
+        if(dp[i]===n3)  factor3++
+        if(dp[i]===n5)  factor5++
+    }
+    return dp[n-1]
+}

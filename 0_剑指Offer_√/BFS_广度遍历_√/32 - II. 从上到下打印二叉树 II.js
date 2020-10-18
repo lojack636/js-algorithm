@@ -48,3 +48,24 @@ var levelOrder = function(root) {
   }
   return res;
 };
+
+const levelOrder=(root)=>{
+  if(!root) return [];
+  let res=[];
+  let queue=[];
+  queue.push(root);
+  while(queue.length!==0){
+    const total=queue.length;
+    let level=[];
+    for(let i=0;i<total;i++){
+      const cur=queue.shift();
+      level.push(cur.val)
+      // 齐步走，一次补充整层的数据
+      if(cur.left) queue.push(cur.left)
+      if(cur.right) queue.push(cur.right)
+    }
+    res.push(level);
+  }
+  return res;
+
+}

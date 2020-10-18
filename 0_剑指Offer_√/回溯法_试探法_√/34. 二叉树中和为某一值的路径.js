@@ -37,3 +37,38 @@ var pathSum = function(root, sum) {
    recur(root, sum)
    return res;
 };
+
+/* 
+给定如下二叉树，以及目标和 sum = 22，
+
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \    / \
+        7    2  5   1
+返回:
+
+[
+   [5,4,11,2],
+   [5,8,4,5]
+]
+
+*/
+const pathSum=(root,sum)=>{
+   let path=[];
+   let res=[];
+   const helper=(root,sum)=>{
+      if(!root)return 
+      sum-=root.val;
+      path.push(root.val)
+      if(sum===0 && !root.left && !root.right) res.push(Array.from(path))
+      
+      helper(root.left,sum);
+      helper(root.right,sum);
+      //! 到底部也没有return时需要pop最后一位
+      path.pop();
+   }
+   return helper(root,sum)
+}

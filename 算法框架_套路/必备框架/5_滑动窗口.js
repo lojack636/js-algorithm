@@ -59,7 +59,7 @@ function slidingWindow(s, t) {
 
       // 判断左侧窗口是否要收缩
       while ('window needs shrink') {
-          // 。。。。。。。
+          //#  。。。。。进行一系列返回操作! 
           let d = s[left];
           // 左移窗口
           left++;

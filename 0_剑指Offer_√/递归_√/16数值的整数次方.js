@@ -55,13 +55,13 @@ var myPow = function(x, n) {
 };
 
 function absMyPow(base, exponent) {
-  if (exponent === 0) {
-      return 1;
-  }
-
-  if (exponent === 1) {
-      return base;
-  }
+  if (exponent === 0) return 1;
+  if (exponent === 1)return base;
+  
+  const subResult = absMyPow(base, Math.floor(exponent / 2));
+  // 0==false ? 奇数: 偶数
+  return exponent % 2 ? subResult * subResult * base : subResult * subResult;
+}
 /* 为false的值
 1、 "" 空的字符串
 2、 为 0 的数字
@@ -70,7 +70,3 @@ function absMyPow(base, exponent) {
 5、 布尔值 false
 6. NaN既不是true也不是false
 */
-  const subResult = absMyPow(base, Math.floor(exponent / 2));
-  // 0==false ? 奇数: 偶数
-  return exponent % 2 ? subResult * subResult * base : subResult * subResult;
-}

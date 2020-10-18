@@ -39,3 +39,24 @@ function isSubStructure(Main, B) {
             &&
            (recur(Main, B) || isSubStructure(Main.left, B) || isSubStructure(Main.right, B));
 }
+
+// 这个写法的缺点是二叉树有可能两个节点拥有同一个值
+const isSubStructure=(Main,B)=>{
+    if(!Main || !B) return false;
+    const finder=(Main,B)=>{
+        if(!Main) return false;
+        if(Main.val!==B.val){
+            finder(Main.left,B) || finder(Main.right,B)
+        }
+        if(Main.val===B.val){
+           return helper(Main,B)
+        }
+    }
+    const helper=(Main,B)=>{
+        if(!B) return true;
+        if(!Main || Main.val!==B.val) return false;
+        return helper(Main.left,B.left) && helper(Main.right,B.right);
+    };
+    // 这里很重要，只要有一个返回true,就返回true;
+    return finder(Main,B) ||  isSubStructure(Main.left, B) || isSubStructure(Main.right, B)
+}

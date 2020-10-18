@@ -70,3 +70,38 @@ var movingCount = function(m, n, k) {
   // 走过坐标的个数就是可以到达的格子数
   return set.size;
 };
+
+
+// m行，n列，K总值
+const movingCount=(m,n,k)=>{
+
+    const getSum=(num)=> num.split("").reduce((pre,cur)=>Number(pre)+Number(cur));
+    let set= new Set();
+
+    const path=[
+        [0,1], //右
+        [1,0], //下
+        [0,-1],//左
+        [-1,0] //上
+    ]
+    let queue=[];
+    queue.push([0,0]);
+    set.add(`${0}-${0}`);
+    while(queue.length!==0){
+        const cur=queue.shift();
+
+    for(let i=0;i<path.length;i++){
+        curX=cur[0]+path[i][0];
+        curY=cur[1]+path[i][1];
+        if(
+        set.has(`${curX}-${curY}`)||
+        curX>=m || curX<0 ||
+        curY>=n || curY<0 ||
+        getSum(curX)+getSum(curY)>k
+        ){ continue;}
+        set.add(`${curX}-${curY}`);
+        queue.push(`${curX}-${curY}`)
+    }
+    }
+    return set.size
+}

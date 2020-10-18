@@ -41,3 +41,16 @@ const isMirror = (t1, t2) => {
 var isSymmetric = function (root) {
   return isMirror(root, root);
 };
+
+
+
+
+const isSymmetric=(root)=>{
+  const helper=(a,b)=>{
+    if(!a && !b) return true;
+    if(!a || !b) return false;
+    if(a.val!==b.val) return false;
+    return  helper(a.left,b.right) && helper(a.right,b.left);
+  }
+  return helper(root,root)
+}

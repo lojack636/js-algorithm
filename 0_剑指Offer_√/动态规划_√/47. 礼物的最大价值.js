@@ -14,6 +14,11 @@
 解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
 
 */
+const test=[
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+];
 // ! 果然是动态规划
 
 // 横向纵向的话就是单独累加，其他的则取Math.max();
@@ -49,47 +54,34 @@ var maxValue1 = function(grid) {
 
 */
 // ! 机器人的方法可以完全遍历所有可能性，但由于本题是求最大值，而不是针对每一个子元素进行筛选，所以需要更换规则
-
-/* const directionAry = [
-  // [-1, 0], // 上
-  [0, 1], // 右
-  [1, 0], // 下
-  // [0, -1] // 左
-];
-const grid=[
+var maxValue2 = function(grid){
+  let height=grid.length;
+  let width=grid[0].length;
+  const dp=new Array(height).fill(0).map(v=>{
+    return new Array(width).fill(0)
+  })
+  dp[0][0]=grid[0][0];
+  for(let i=0;i<height;i++){
+    for(let j=0;j<width;j++){
+      if(i==0 && j==0){continue;}
+      else if(i==0){
+        dp[i][j]=dp[i][j-1]+grid[i][j]
+      }
+      else if(j==0){
+        dp[i][j]=dp[i-1][j]+grid[i][j]
+      }
+      else{
+        dp[i][j]=Math.max(dp[i][j-1]+grid[i][j], dp[i-1][j]+grid[i][j])
+      }
+    }
+  }
+  return dp
+}
+const test2=[
   [1,3,1],
   [1,5,1],
   [4,2,1]
 ];
 
-var maxValue = function(grid) {
-  let height = grid.length;
-  let width = grid[0].length;
-  // let Grid=[]
-  // for(let i=0;i<height;i++){
-  //   Grid.push(new Array(width).fill(0))
-  // }
-  let Grid=Array.from(grid);
-  let set = new Set(['0-0']);
-  let queue = [[0,0]];
-  // if(set.has(`${i}-${j}`)) continue;
-  let res=0;
-  while(queue.length){
-    let [x, y] = queue.shift();
-    for(let i=0;i<2;++i){
-      let offsetX = x + directionAry[i][0];
-      let offsetY = y + directionAry[i][1];
-      if(offsetX>=width||offsetY>=height|| set.has(`${offsetX}-${offsetY}`)){
-        continue}
-      // console.log(grid[offsetX][offsetY]);
-      Grid[i][j] += Math.max(Grid[i][j - 1], Grid[i - 1][j]);
-      // res= res!==Math.max(grid[offsetX][offsetY],res) ? res+grid[offsetX][offsetY] : res
-      set.add(`${offsetX}-${offsetY}`);
-      queue.push([offsetX,offsetY]);
-    }
-  }
-  console.log(set);
-  console.log(res);
-};
-
-console.log(maxValue(grid)); */
+console.log(maxValue2(test));
+console.log(maxValue1(test));

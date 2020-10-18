@@ -40,3 +40,49 @@ function DFS (res, visited, arr, path) {
 };
 
 console.log(permutation(str1));
+
+/*
+ *  let result = []
+ *  backtrack(路径, 选择列表){
+ *    if 满足结束条件:
+ *        result.add(路径)
+ *        return
+ *
+ *    for 选择 in 选择列表:
+ *        做选择
+ *        backtrack(路径, 选择列表)
+ *        撤销选择
+ *   }
+ */
+
+
+const permutation1=(s)=>{
+  const visited=[]; //本题目可能出"aaab""
+  const res=new Set();
+  const arr=[...s];
+  const path=[];
+  const DFS=(res,arr,visited,path)=>{
+    // 有了，下一轮
+    if(res.has(path.join(""))) return;
+    // 没有，添加
+    if(path.length==arr.length) return res.add(path.join(""))
+    
+    for(let i=0;i<arr.length;i++){  
+      let element=arr[i] //当前元素；
+      if(visited[i]===true)continue;
+      visited[i]=true;
+      path.push(element);
+      DFS(res,arr,visited,path) //继续
+      // 撤销选择
+      path.pop();
+      visited[i]=false
+    }
+  }
+  DFS(res,arr,visited,path)
+  return Array.from(res);
+}
+/* 
+输入：s = "abc"
+输出：["abc","acb","bac","bca","cab","cba"]
+
+*/

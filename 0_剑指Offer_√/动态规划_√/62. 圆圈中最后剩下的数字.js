@@ -21,3 +21,15 @@ var lastRemaining = function(n, m) {
   return res;
 };
 
+
+// 进阶: 如果要输出哪个数字，则：
+let arr=[1,2,3,100,30,204,39,11];
+var lastRemaining = function(arr, m) {
+  let n=arr.length
+  let res = 0;
+  for (let i = 2; i <= n; i++) {
+      res = (m + res) % i;
+  }
+  return arr[res];
+};
+

@@ -20,3 +20,18 @@ var maxSubArray = function(nums) {
   }
   return res;
 };
+
+
+//  nums = [-2,1,-3,4,-1,2,1,-5,4]
+const maxSubArray2=(nums)=>{
+  let res=nums[0]
+  for(let i=1;i<nums.length;i++){
+    if(nums[i-1]>0) nums[i]=nums[i-1]+nums[i];
+      res=Math.max(nums[i],res)
+      // ! res作用其实是记录和 和现在的进行比较， res为最大和
+      // nums[i]=Math.max(nums[i-1],nums[i-1]+nums[i])
+  }
+  return res
+}
+
+console.log(maxSubArray2([-2,1,-3,4,-1,2,1,-5,4]));

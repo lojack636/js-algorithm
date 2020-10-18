@@ -64,8 +64,8 @@ function permute(nums) {
       track.push(nums[i])
       // console.log(track);
       // 进入下一层决策树
-      // backtrack(Array.from(track));//为了递归，深拷贝一份
-      backtrack(Array.of(...track)) //为了递归，深拷贝一份
+      backtrack(Array.from(track));//为了递归，深拷贝一份
+      // backtrack(Array.of(...track)) //为了递归，深拷贝一份
       // backtrack(track.slice());//为了递归，浅拷贝，不改变原数组
       // 取消选择
       track.pop()

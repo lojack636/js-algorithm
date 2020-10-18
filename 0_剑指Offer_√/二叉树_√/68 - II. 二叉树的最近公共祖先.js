@@ -4,11 +4,11 @@ const lowestCommonAncestor=(root,p,q)=>{
       }
       left = lowestCommonAncestor(root.left, p, q);
       right = lowestCommonAncestor(root.right, p, q);
-      if(left == null && right == null) {
+      if(!left && !right) {
           return null;
-      } else if(left == null && right != null) {
+      } else if(!left && right) {
           return right;
-      } else if(left != null && right == null) {
+      } else if(left && !right) {
           return left;
       } else {
         // 左右均不为空，则root就是left,right的root

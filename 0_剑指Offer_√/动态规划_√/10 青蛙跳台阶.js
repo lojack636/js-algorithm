@@ -1,15 +1,16 @@
 // 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
 // !动态规划思想   --由底向上通过迭代解决问题
 
-const numWays=(n)=>{
+function numWays(n){
   let over=1000000007;
-  if(n<=1) return 1; 
-  let arr=[1,1,2];
-  // 每加一级，可以一步跳上也可以两步跳上
-  for(let i=2;i<=n;i++){
-      arr[i]=(arr[i-1]+arr[i-2])%over;
+  const dp=new Array(n).fill(n);
+  dp[0]=1;
+  dp[1]=1;
+  dp[2]=2;
+  for(let i=3;i<=n;i++){
+      dp[i]=(dp[i-2]+dp[i-1])%over
   }
-  return arr[n];
+    return dp[n];
 }
 
 //!  也是斐波那契数列变形

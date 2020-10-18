@@ -31,3 +31,17 @@ var mirrorTree = function (root) {
   }
   return res;
 };
+
+
+
+// 
+const mirrorTree=(root)=>{
+  let res=null;
+  // 必须要有返回值；
+  if(!root) return res;
+  let res=new TreeNode(root.val);
+  res.right=mirrorTree(root.left);
+  res.left=mirrorTree(root.right);
+  return res;
+}
+

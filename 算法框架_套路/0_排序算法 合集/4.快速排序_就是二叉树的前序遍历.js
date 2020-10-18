@@ -1,21 +1,20 @@
 
 
-const quickSort = function(arr) {
-  　　if (arr.length <= 1) return arr;
-     // 选中点
-  　　const pivotIndex = Math.floor(arr.length / 2);
-  　　const pivot = arr.splice(pivotIndex, 1)[0];
-  　　const left = [];
-  　　const right = [];
-  　　for (let i = 0; i < arr.length; i++){
-  　　　　if (arr[i] < pivot) {
-  　　　　　　left.push(arr[i]);
-  　　　　} else {
-  　　　　　right.push(arr[i]);
-  　　　　}
-  　　}
-  　　return quickSort(left).concat([pivot], quickSort(right));
-  };
+function quickSort(arr){
+  if(arr.length <= 1) return arr;
+  let right = [],left = [],keys = arr.shift();
+  for(let value of arr){
+      if(value > keys){
+          right.push(value)
+      }else{
+          left.push(value);
+      }
+  }
+  return quickSort(left).concat(keys,quickSort(right));
+}
+
+
+
 let  list=[3,44,28,6,300,2,3,5,1999,39,20,11,5]
 console.log(quickSort(list));
 console.log(quickSort([3,44,28,6,300,2,3,5,1999,39,20,11,5]));

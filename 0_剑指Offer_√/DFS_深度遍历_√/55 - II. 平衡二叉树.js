@@ -39,8 +39,17 @@ const isBalanced = (root) => {
   // 4. 返回结果
   return result;
 };
-
-
+const isBalanced=(root)=>{
+  const helper=(root)=>{
+    if(!root) return 0;
+    let left=helper(root.left)+1;
+    let right=helper(root.right)+1;
+    if(Math.abs(left-right)>1) return false;
+    // 需要返回子树最深的深度；
+    return Math.max(left,right)
+  }
+  return helper(root)
+}
 
 
 

@@ -35,17 +35,18 @@ y为前几个骰子甩出来的和，这里由于总的骰子数为2，因此前
 由此不断叠加得到n个骰子甩出来的概率。
 
 */
-var twoSum = function(n) {
+var twoSum1 = function(n) {
   let dp = [ 1/6, 1/6, 1/6, 1/6, 1/6, 1/6 ];
   for (let i = 2; i <= n; i++) { //骰子数
     const temp = [];
     for (let j = 1; j <= 6; j++) {  //投出的点数
       for (let k = 0; k < dp.length; k++) {  //每个值之前的概率
         const sum = k + j - 1;
-        temp[ sum ] = (temp[ sum ] || 0) + dp[ k ] * 1/6;
+        temp[ sum ] = (temp[ sum ] || 0) + dp[ k ] * 1/6;//如果是计算过的，则会再加一遍
       }
     }
     dp = temp;
   }
   return dp;
 };
+console.log(twoSum1(2));

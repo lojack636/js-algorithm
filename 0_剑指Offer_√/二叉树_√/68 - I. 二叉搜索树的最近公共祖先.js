@@ -6,6 +6,8 @@
 
 例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
 */
+
+
 // 递归===========
 const lowestCommonAncestor=(root, p,q)=>{
       while (true) {
@@ -18,4 +20,14 @@ const lowestCommonAncestor=(root, p,q)=>{
               return root;
           }
       }
+  }
+
+  const lowestCommonAncestor=(root,p,q)=>{
+    function helper(root,p,q){
+        if(!root) return root;
+        if(root.val===p || root.val===q)  return root
+        if(root.val>p.val &&root.val>q.val) helper(root.left,p,q)
+        else if(root.val<p.val &&root.val<q.val) helper(root.right,p,q)
+    }
+    return helper(root,p,q)
   }
