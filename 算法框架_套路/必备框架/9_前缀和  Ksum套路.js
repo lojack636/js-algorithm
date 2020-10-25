@@ -74,10 +74,10 @@ function subarraySum(nums,k) {
   for (let i = 0; i < n; i++) {
       sum0_i += nums[i];
       // 这是我们想找的前缀和 nums[0..j]
-      let sum0_j = sum0_i - k;
+      let sum0_j = sum0_i - k;// sum i- sum j=k;
       // 如果前面有这个前缀和，则直接更新答案
       if (preSum.has(sum0_j)){
-        ans += preSum.get(sum0_j)
+        ans += preSum.get(sum0_j) //有的时候才累加
       }
       // 没出现过，则设定为1次,然后下一轮
       if(!preSum.has(sum0_i)){

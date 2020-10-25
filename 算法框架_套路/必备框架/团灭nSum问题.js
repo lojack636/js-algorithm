@@ -4,6 +4,9 @@
 请你返回 nums 中能够凑出 target 的两个元素的值，
 比如输入 nums = [1,3,5,6], target = 9，那么算法返回两个元素 [3,6]。
 可以假设只有且仅有一对元素可以凑出 target。
+
+但如果有重复元素[1,2,3,3,3,4,6,6,6,7,8] ,就必须用while循环过滤掉
+如果是找14的话 [1,6,7],[2,4,8]
 */
 
 //> n Sum和  框架:
@@ -23,16 +26,19 @@ function nSumTarget( nums, n, start, target) {
       // 双指针那一套操作
       let lo = start, hi = sz - 1;
       while (lo < hi) {
-          let sum = nums[lo] + nums[hi];
           let left = nums[lo], right = nums[hi];
+          let sum = nums[lo] + nums[hi];
+          //  和小于，则low++;
           if (sum < target) {
               while (lo < hi && nums[lo] == left) lo++;
-          } else if (sum > target) {
-              while (lo < hi && nums[hi] == right) hi--;
+          //  和大于，则high--;
+            } else if (sum > target) {
+              while (lo < hi && nums[hi] == right) hi--;//跳过所有重复元素 [1,1,1,2,2,3,3]
           } else {
+          //  和相同  
               res.push([left, right]);
               while (lo < hi && nums[lo] == left) lo++;
-              while (lo < hi && nums[hi] == right) hi--;
+              while (lo < hi && nums[hi] == right) hi--;// 跳过所有重复元素 [1,1,1,2,2,3,3]
           }
       }
   } else {
@@ -44,12 +50,47 @@ function nSumTarget( nums, n, start, target) {
               arr.push(nums[i]);
               res.push(arr);
           }
-          while (i < sz - 1 && nums[i] == nums[i + 1]) i++;
+          while (i < sz - 1 && nums[i] == nums[i + 1]) i++;// 跳过第一个数字重复的情况，否则会出现重复结果
       }
   }
   return res;
 }
 
+// 手敲一遍；
+function nSumTarget( nums, n, start, target) {
+    let size=nums.length;
+    let res=[];
+    if(size<n|| n<2) return res;
+    if(n===2){
+        let lo=nums[0],hi=nums[size-1];
+        while(lo<hi){
+        let left=nums[lo],right=nums[hi];
+        let sum=left+right;
+        if(sum<target){
+            while(lo<hi && nums[lo]==left) lo++
+        }
+        else if(sum>target){
+            while(lo<hi && nums[hi]==right) hi--
+        }
+        else{
+            res.push([lo,hi]);
+            while(lo<hi && nums[lo]==left) lo++
+            while(lo<hi && nums[hi]==right) hi--
+        }
+        }
+    }else{
+
+        for(let i=0;i<size;i++){
+            let sub=nSumTarget(nums,n-1, i+1,target-nums[i])
+            for(let arr of sub){
+                arr.push(nums[i])
+                res.push(arr)
+            }
+            while(i<size-1 && nums[i]==nums[i+1] ){i++};
+        }
+    }
+    return res;
+}
 
 // 我们可以先对 nums 排序，然后利用前文 双指针技巧 写过的左右双指针技巧，从两端相向而行就行了：
 // > 双指针

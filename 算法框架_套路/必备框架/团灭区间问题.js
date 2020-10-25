@@ -39,7 +39,7 @@ function removeCoveredIntervals(intvs) {
   for (let i = 1; i < intvs.length; i++) {
       let intv = intvs[i];
       // 情况一，找到覆盖区间
-      if (left <= intv[0] && right >= intv[1]) {
+      if (intv[0]>=left && intv[1]<=right) {
           res++;
       }
       // 情况二，找到相交区间，合并
@@ -94,7 +94,7 @@ function merge(intervals){
     curr = intervals[i]
     //  res 中最后一个元素的引用
     last = res[res.length-1]
-    if(curr[0] <= last[1])
+    if( last[1]>=curr[0])
         //  找到最大的 end
         last[1] = Math.max(last[1], curr[1])
     else
@@ -119,11 +119,13 @@ var intervalIntersection=function(A,B){
     let a1=A[i][0], a2=A[i][1]
     let b1=B[j][0], b2=B[j][1]
     // 有交集
-    if(b2>=a1&&b1<=a2){
+      // 比如 [1,5],[0,3];
+    if(a1<=b2&&a2>=b1){
       let temp=[ Math.max(a1,b1),Math.min(a2,b2)]
       res.push(temp)
     }
     // 指针前进
+    // [1,5],[0,3]
     if(b2<a2) j+=1;//判断B下一个
     else i+=1 //判断A下一个
   }

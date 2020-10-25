@@ -4,6 +4,7 @@
 // !  1.滑动窗口基础模板
 function slideWindow(){
   let left = 0, right = 0;
+  let window=[];
   while (right < s.length) {
       // 增大窗口
       window.push(s[right]);
