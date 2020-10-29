@@ -9,8 +9,8 @@ const mergeSort=(arr)=>{
   
 }
 const merge=(left,right)=>{
-  const result=[];let result1=[]
-  while(left.length && right.length){
+  const result=[];
+  while(left.length>0 && right.length>0){
     if(left[0]<=right[0]){
       // 删除left第一位
       result.push(left.shift())
@@ -18,14 +18,42 @@ const merge=(left,right)=>{
       result.push(right.shift())
     }
   }
-  // console.log(result);
-  result1=result.concat(left).concat(right)
-  return result1
+  // concat原因是left或right可能有一个先清空，但另一个仍有值
+  return result.concat(left).concat(right)
 };
 
 
 let list=[2,1,3,6,10,100,-20,-1]
-mergeSort(list);
+console.log(mergeSort(list));
+
+
+
+
+
+
+
+// const mergeSort=(arr)=>{
+//   const len=arr.length;
+//   if(len<=1) return arr;
+// let middle=Math.floor(arr.length/2);
+// let left=arr.split(0,middle);
+// let right=arr.split(middle);
+//  return merge(mergeSort(left),mergeSort(right));
+// }
+
+// const merge=(left,right)=>{
+//   const res=[];
+
+//   while(left.length>=0 && right.length>=0){
+//     if(left[0]<=right[0]){
+//       res.push(left.shift())
+//     }else{
+//       res.push(right.shift())
+//     }
+//   }
+//   return res.concat(left).concat(right);
+// }
+
 
 
 

@@ -16,11 +16,8 @@ function quickSort(arr){
 
 
 let  list=[3,44,28,6,300,2,3,5,1999,39,20,11,5]
-console.log(quickSort(list));
-console.log(quickSort([3,44,28,6,300,2,3,5,1999,39,20,11,5]));
-
-
-
+// console.log(quickSort(list));
+// console.log(quickSort([3,44,28,6,300,2,3,5,1999,39,20,11,5]));
 
 
 

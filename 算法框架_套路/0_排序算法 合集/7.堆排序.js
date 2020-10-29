@@ -1,58 +1,57 @@
-// //堆调整
-// function HeapAdjust(arr, first, end){
-//   let father = first;
-//   let son = father * 2 + 1;
-//   while (son < end) {
-//       if (son + 1 < end && arr[son] < arr[son+1]) 
-//           ++son;
-//       if (arr[father] > arr[son]) 
-//           break;//如果父节点大于子节点则表示调整完毕
-//       else {
-//         [arr[father],arr[son]] = [arr[son],arr[father]];   //不然就交换父节点和子节点的元素
-//           father = son;   //父和子节点变成下一个要比较的位置
-//           son = 2 * father + 1;
-//       }
-//   }
-// }
+function heapSort(array) {
+  let len = array.length;
+  // 如果不是数组或者数组长度小于等于1，直接返回，不需要排序 
+  if (!Array.isArray(array) || len <= 1) return;
 
-// //堆排序
-// function HeapSort( arr,len) {
-//   let i; 
-//   for (i = len/2 - 1; i >= 0; --i) {
-//       HeapAdjust(arr, i, len); //初始化堆，从最后一个父节点开始
-//   }
-//   for (i = len - 1; i > 0; --i) {
-//     [arr[0],arr[i]] = [arr[i],arr[0]];   //从堆中的取出最大的元素再调整堆
-//       HeapAdjust(arr, 0, i);  //调整成堆
-//   }
-// }
+  buildMaxHeap(array); // 将传入的数组建立为大顶堆
 
-function adjustMaxHeap(heap,head,heapSize){
-  let temp = heap[head];
-  let child = head * 2 + 1;
-  while(child < heapSize){
-      if(child+1 < heapSize && heap[child] < heap[child+1]) child++;
-      if(heap[head] < heap[child]){
-          heap[head] = heap[child];
-          head = child;
-          child = head * 2 + 1;
-      }else break;
-      heap[head] = temp;
+  // 每次循环，将最大的元素与末尾元素交换，然后剩下的元素重新构建为大顶堆
+  for (let i = len - 1; i > 0; i--) {
+    swap(array, 0, i);
+    adjustMaxHeap(array, 0, i); // 将剩下的元素重新构建为大顶堆
+  }
+
+  return array;
+}
+
+
+function adjustMaxHeap(array, index, heapSize) {
+  let iMax,
+    iLeft,
+    iRight;
+
+  while (true) {
+    iMax = index; // 保存最大值的索引
+    iLeft = 2 * index + 1; // 获取左子元素的索引
+    iRight = 2 * index + 2; // 获取右子元素的索引
+
+    // 如果左子元素存在，且左子元素大于最大值，则更新最大值索引
+    if (iLeft < heapSize && array[iMax] < array[iLeft]) {
+      iMax = iLeft;
+    }
+
+    // 如果右子元素存在，且右子元素大于最大值，则更新最大值索引
+    if (iRight < heapSize && array[iMax] < array[iRight]) {
+      iMax = iRight;
+    }
+
+    // 如果最大元素被更新了，则交换位置，使父节点大于它的子节点，同时将索引值跟新为被替换的值，继续检查它的子树
+    if (iMax !== index) {
+      [arr[iMax],arr[index]]= [arr[index],arr[iMax]]
+      index = iMax;
+    } else {
+      // 如果未被更新，说明该子树满足大顶堆的要求，退出循环
+      break;
+    }
   }
 }
 
-function buildHeap(heap){
-  for(let i = (heap.length-1) >> 1;i >= 0;i--){
-      adjustMaxHeap(heap,i,heap.length);
+// 构建大顶堆
+function buildMaxHeap(array) {
+  let len = array.length,
+    iParent = parseInt(len >> 1) - 1; // 获取最后一个非叶子点的元素
+
+  for (let i = iParent; i >= 0; i--) {
+    adjustMaxHeap(array, i, len); // 循环调整每一个子树，使其满足大顶堆的要求
   }
 }
-
-function heapSort(arr){
-  buildHeap(arr);
-  for(let i = arr.length-1;i > 0;i--){
-      [arr[i],arr[0]] = [arr[0],arr[i]];
-      adjustMaxHeap(arr,0,i);
-  }
-  return arr;
-}
-
