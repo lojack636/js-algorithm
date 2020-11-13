@@ -23,6 +23,7 @@ const BFS=(start, target)=>{
       /* 将当前队列中的所有节点向四周扩散 */
       for (let i = 0; i < size; i++) {
           let cur = queue.shift();
+          if(visited.has(cur))continue;
           /* 划重点：这里判断是否到达终点 */
           if (cur===target) return step;
           /* 将 cur 的相邻节点加入队列 */

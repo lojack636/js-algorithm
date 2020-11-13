@@ -3,16 +3,15 @@
 /*
 * 简明框架 
 主函数
-public int rob(int[] nums) {
+function rob(nums) {
     return dp(nums, 0);
 }
 返回 nums[start..] 能抢到的最大值
-private int dp(int[] nums, int start) {
+function dp(nums, start) {
     if (start >= nums.length) {
         return 0;
     }
-
-    int res = Math.max(
+    let res = Math.max(
             不抢，去下家
             dp(nums, start + 1), 
             抢，去下下家

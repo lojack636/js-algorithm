@@ -146,3 +146,13 @@ Object.getOwnPropertyNames(temp1).forEach((name)=>{
   console.log(temp1[name])  //打印出了值
 })
 
+// entries遍历
+const o={
+  'a':1111,
+  'b':2222,
+  'c':33333
+}
+
+for (const [key, value] of Object.entries(o)) {
+  console.log(`${key}: ${value}`);
+}

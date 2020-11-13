@@ -18,9 +18,8 @@ var longestPalindrome = function(s) {
    for(let i =0;i<s.length;i++){
      let s1=helper(s,i,i); //s[i]为中心的回文字符串
      let s2=helper(s,i,i+1); //找到以s[i]和s[i+1]为中心的回文字符串
-     res=res.length>s1.length? res: s1;  //更新答案
-     res=res.length>s2.length? res: s2; //更新答案
-    //  最后res一定是最大的
+     res=res.length>s1.length? res: s1; 
+     res=res.length>s2.length? res: s2; 
    }
    return res;
 };

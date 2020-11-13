@@ -32,3 +32,8 @@ RegExp.escape = function( value ) {
 // let reg2=new RegExp()
 let res1= RegExp.escape("Need.// tips? Visit RUNOOB!")
 console.log(res1) // Need\.//\ tips\?\ Visit\ RUNOOB!
+
+
+const test='0111101';
+console.log(test.replace(/[^1]/g,''));
+console.log(test);

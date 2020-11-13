@@ -117,7 +117,7 @@ return left;
 function binary_search(nums,target) {
   let left = 0, right = nums.length - 1; 
   while(left <= right) {
-      let mid = left + (right - left) / 2;
+      let mid = Math.floor(left + (right - left) / 2);
       if (nums[mid] < target) {
           left = mid + 1;
       } else if (nums[mid] > target) {
@@ -135,7 +135,7 @@ function binary_search(nums,target) {
 function left_bound(nums, target) {
   let left = 0, right = nums.length - 1;
   while (left <= right) {
-      let mid = left + (right - left) / 2;
+      let mid = Math.floor(left + (right - left) / 2);
       if (nums[mid] < target) {
           left = mid + 1;
       } else if (nums[mid] > target) {
@@ -153,7 +153,7 @@ function left_bound(nums, target) {
 function right_bound(nums, target) {
   let left = 0, right = nums.length - 1;
   while (left <= right) {
-      let mid = left + (right - left) / 2;
+      let mid = Math.floor(left + (right - left) / 2);
       if (nums[mid] < target) {
           left = mid + 1;
       } else if (nums[mid] > target) {

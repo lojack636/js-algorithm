@@ -12,8 +12,9 @@ var reverseList = function(head) {
   if(head===null) return head
   const reverse=(head)=>{
     if (head.next == null) return head;
-    let last = reverse(head.next);
-    head.next.next = head;//2的下一位
+    let last = reverse(head.next);//reverse 函数会返回反转之后的头结点s
+    head.next.next = head;
+    //因为head.next已经反转了，head.next是翻转后的最后一个元素，那么，(head.next).next就应该挂head元素，刚好最后一个
     head.next = null;//末尾指向null
     return last;
   }
@@ -21,6 +22,12 @@ var reverseList = function(head) {
   return reverse(head);
 };
 
+/* 
+head                           last
+1->        2<-3 <- 4<- 5 <- 6<-7  
+           |
+          null
+*/
 
 /* 
 对于递归算法，最重要的就是明确递归函数的定义。
@@ -39,7 +46,7 @@ let successor = null; // 后驱节点
 function reverseN( head,n) {
     if (n == 1) { //同时也是最后一个元素 
         // 记录第 n + 1 个节点
-        successor = head.next; //记录后驱节点。
+        successor = head.next; //最后一个元素时，next就不用变了
         return head;
     }
     // 以 head.next 为起点，需要反转前 n - 1 个节点
@@ -51,6 +58,12 @@ function reverseN( head,n) {
     return last;
 }
 
+
+/*
+head      last    successor
+  1<- 2 <- 3             4->5->6->7->8->null
+  |______________________|
+*/
 
 //> 反转链表的一部分
 

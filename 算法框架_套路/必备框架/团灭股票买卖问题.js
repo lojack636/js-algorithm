@@ -120,7 +120,7 @@ function maxProfit_k_1(prices) {
 
 /* 
 * 如果 k 为正无穷，那么就可以认为 k 和 k - 1 是一样的。可以这样改写框架：
-> 赚的钱可以积累起来， 也就必须要用一个变量存储起来
+
 dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
 dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
             = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])
@@ -134,9 +134,9 @@ function maxProfit_k_inf(prices) {
   let n = prices.length;
   let dp_i_0 = 0, dp_i_1 = Number.MIN_SAFE_INTEGER;
   for (let i = 0; i < n; i++) {
-      let earnMoney = dp_i_0;
-      dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);//手里没有股票
-      dp_i_1 = Math.max(dp_i_1, earnMoney - prices[i]);// 手里有股票
+      let temp = dp_i_0;
+      dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+      dp_i_1 = Math.max(dp_i_1, temp - prices[i]);
   }
   return dp_i_0;
 }
@@ -154,12 +154,12 @@ dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
 function maxProfit_with_cool(prices) {
   let n = prices.length;
   let dp_i_0 = 0, dp_i_1 = Number.MIN_SAFE_INTEGER;
-  let dp_pre = 0; // 代表 dp[i-2][0]
+  let dp_pre_0 = 0; // 代表 dp[i-2][0]
   for (let i = 0; i < n; i++) {
-      let myMoney = dp_i_0;
+      let temp = dp_i_0;
       dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);//今天没股票，可能有股票然后卖了，或者本来就没有股票
-      dp_i_1 = Math.max(dp_i_1, dp_pre - prices[i]);//今天有股票，可能本来就有，或者昨天买的
-      dp_pre = myMoney;
+      dp_i_1 = Math.max(dp_i_1, dp_pre_0 - prices[i]);//今天有股票，可能本来就有，或者昨天买的
+      dp_pre_0 = temp;
     // 第一天pre是0;第二天也是0，第三天才开始是pre=dp_i_0； 
   }
   return dp_i_0;
@@ -182,9 +182,9 @@ function maxProfit_with_fee(prices,fee) {
   let n = prices.length;
   let dp_i_0 = 0, dp_i_1 = Number.MIN_SAFE_INTEGER;
   for (let i = 0; i < n; i++) {
-      let myMoney = dp_i_0;
+      let temp = dp_i_0;
       dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-      dp_i_1 = Math.max(dp_i_1, myMoney - prices[i] - fee);
+      dp_i_1 = Math.max(dp_i_1, temp - prices[i] - fee);
   }
   return dp_i_0;
 }
@@ -221,11 +221,10 @@ function maxProfit_k_2(prices) {
   let dp_i10 = 0, dp_i11 =Number.MIN_SAFE_INTEGER;
   let dp_i20 = 0, dp_i21 = Number.MIN_SAFE_INTEGER;
   for (let price of prices) {
-      dp_i20 = Math.max(dp_i20, dp_i21 + price);//第二天手里没有股票= 第一天就没有， 或今天卖了
-      dp_i21 = Math.max(dp_i21, dp_i10 - price);//第二天手里有股票= 本来就有， 或今天买进
-
-      dp_i10 = Math.max(dp_i10, dp_i11 + price);//第一天手里没有股票= 本来就没有， 或今天卖了
-      dp_i11 = Math.max(dp_i11, -price);// 第一天手里有股票= 本来就有， 或今天买进
+      dp_i20 = Math.max(dp_i20, dp_i21 + price);
+      dp_i21 = Math.max(dp_i21, dp_i10 - price);
+      dp_i10 = Math.max(dp_i10, dp_i11 + price);
+      dp_i11 = Math.max(dp_i11, -price);
   }
   return dp_i20;
 }
@@ -243,25 +242,22 @@ function maxProfit_k_any( max_k,prices) {
   let n = prices.length;
   // 交易次数判断是否超过n/2。
   if (max_k > n / 2) return maxProfit_k_inf(prices);
-  // k代表第k个交易
   let dp=new Array(n).fill(0).map(v=>new Array(max_k+1).fill(0).map(v=>{
    return new Array(2).fill(0)
   }));
 
-  for (let i = 0; i < n; i++) {
-    for (let k = max_k; k >= 1; k--) {
-      if (i===0) {
-        dp[i][k][0] = 0;
-        dp[i][k][1] = -prices[i];
-        continue;
-       }
-      dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
-      dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);     
-  }
-  }
+  for (let i = 0; i < n; i++) 
+      for (let k = max_k; k >= 1; k--) {
+          if (i===0) {
+            dp[i][k][0] = 0;
+            dp[i][k][1] = -prices[i];
+            continue;
+           }
+          dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
+          dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);     
+      }
   return dp[n - 1][max_k][0];
 }
-
 // 备选项，如果K 大于一半，那说明就是infinity，随便交易
 function maxProfit_k_inf(prices) {
   let n = prices.length;
@@ -274,37 +270,3 @@ function maxProfit_k_inf(prices) {
   return dp_i_0;
 }
 
-
-function maxProfit_k_any_self(max_k,prices){
-  let len=prices.length;
-  if(max_k>len/2) return maxProfit_k_inf_self(prices);
-  // 构建DP table;
-  // 总共len天，每天的每场交易都有两种状态；
-  let dp=new Array(len).fill(0).map(v=>new Array(max_k+1).fill(0).map(v=>new Array(1).fill(0)))
-  for(let i=0;i<len;i++){
-    for(let k=max_k;k>0;k--){
-      if(i===0){
-        dp[i][k][0]=0;
-        dp[i][k][1]=-prices[i];
-        continue;
-      }
-      // 0 没有   1 有；
-      dp[i][k][0]=Math.max(dp[i-1][k][0],dp[i-1][k][1]+prices[i])
-      dp[i][k][1]=Math.max(dp[i-1][k][1],dp[i][k][0]-prices[i])
-    }
-  }
-  return dp[len-1][max_k][0];
-}
-
-// k是infinity
-function maxProfit_k_inf_self(prices){
-let len=prices.length;
-let dp=new Array(len).fill(0).map(v=>new Array(1).fill(0));
-let dp_i_0=0, dp_i_1=Number.MIN_SAFE_INTEGER ;
-for(let price of prices){
-  let temp=dp_i_0;
-  dp_i_0=Math.max(dp_i_0,dp_i_1+price);
-  dp_i_1=Math.max(dp_i_1,temp-price);
-}
-  return dp_i_0;
-}

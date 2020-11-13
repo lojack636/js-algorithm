@@ -80,6 +80,41 @@ function permute(nums) {
 console.log(permute(input))
 // console.log([1,2,3,4,5,6,7].slice());
 
+
+
+// 全排列2
+
+function permuteUnique(nums) {
+  nums = nums.sort((a, b) => a - b)
+  let res = []
+  let track = []
+  let used = new Array(nums.length).fill(false)
+  const traverse = (track) => {
+    if (track.length === nums.length) {
+      res.push(Array.from(track))
+      return
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      // used[i - 1] == true，说明同一树支nums[i - 1]使用过 
+      // used[i - 1] == false，说明同一树层nums[i - 1]使用过
+      if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false) {
+        continue
+      }
+      // 当前还没用过
+      if (used[i] == false) {
+        used[i] = true
+        track.push(nums[i])
+        traverse(track)
+        track.pop()
+        used[i] = false
+      }
+    }
+  }
+  traverse(track)
+  return res
+}
+
 // 八皇后问题
 
 /* 输入棋盘边长 n，返回所有合法的放置 */

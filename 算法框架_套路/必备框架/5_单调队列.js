@@ -51,7 +51,7 @@ function maxSlidingWindow(nums,k) {
       } else { // 窗口开始向前滑动
           window.push(nums[i]);
           res.push(Math.max(window));
-          window.shift(nums[i - k + 1]);// nums[i - k + 1] 就是窗口最后的元素
+          window.shift(nums[i - k + 1]);// nums[i - k + 1] 就是窗口开始的元素
       }
   }
   return res;
