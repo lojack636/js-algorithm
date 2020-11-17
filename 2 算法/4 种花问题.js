@@ -16,34 +16,3 @@ var canPlaceFlowers = function(flowerbed, n){
 //调用
 let arr = [1,0,0,0,1]
 console.log(canPlaceFlowers(arr, 2))
-
-
-// const park=[0,1,0,0,0,0,0,1,0,0,0,1,1,0,0];
-// let total=0
-// let count=0
-// let temp=undefined;
-// let max;
-// let res
-// const canPlant=(num)=>{
-//     for(let i=0;i<park.length;i++){
-//       count+=1
-//       if(temp=== park[i]){
-//         count-=1
-//         // console.log(count);
-//         if(count <=2){
-//           temp=null
-//           count=0
-//           break
-//         }
-//         count%2==0 ? max=count/2 -1 : max=Math.floor(count/2)
-//         // console.log(max);
-//         total+= max
-//       }
-//       if(park[i]===1){
-//         temp=1;
-//         count=0
-//       }
-//     } 
-//     return num <=total
-// }
-// console.log(canPlant(2));

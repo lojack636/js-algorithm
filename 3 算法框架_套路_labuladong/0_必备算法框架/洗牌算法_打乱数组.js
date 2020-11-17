@@ -10,10 +10,8 @@ function shuffle(arr){
   for (let i = 0; i < arr.length; i++) {
     // 不能加1,因为i要小于length
     const random = Math.floor( (Math.random()*(n-i)) +i );// [i,n]才能保证是可能性是n!
-    // swap交换
-    let temp=arr[random];
-    arr[random]=arr[i];
-    arr[i]=temp
+    // swap
+    [arr[random],arr[i]]=[arr[i],arr[random]]
   }
   return arr
 }
@@ -32,44 +30,37 @@ Math.random();
 // ! 获取 [a,b)   -----用的最多      
 Math.floor((Math.random()*(b-a))+a)
 
+// ! 获取 (a,b)
+Math.floor((Math.random()*(b-a))+a+1) //Math.random(b)本身就取不到b
+
 // ! 获取[a,b]随机数 
 Math.floor((Math.random()*(b+1-a))+a)  //保证能取到b 
 
 // ! 获取 (a,b]  
 Math.floor( (Math.random()*(b+1-a))+a+1)
 
-// ! 获取 (a,b)
-Math.floor((Math.random()*(b-a))+a+1) //Math.random(b)本身就取不到b
 
 
 
 
 // ! 384 打乱数组
 
-var Solution = function(nums) {
-  this.nums = nums;
-};
+// 写成class
+class Solution {
+ constructor(nums){
+   this.nums=nums
+ }
+ reset=()=> this.nums;
+ shuffle=()=>{
+  let copy=Array.from(this.nums)
+  let n=copy.length;
+  for (let i = 0; i < copy.length; i++) {
+    // i可以从0开始，因此不用+1；
+    const random = Math.floor( (Math.random()*(n-i)) +i );// [i,n]才能保证是可能性是n!
+    [copy[random],copy[i]]=[copy[i],copy[random]]
+  }
+  return copy
+ }
 
-Solution.prototype.reset = function() {
-  return this.nums;
-};
-
-Solution.prototype.shuffle = function() {
-let copy=Array.from(this.nums)
-let n=copy.length;
-for (let i = 0; i < copy.length; i++) {
-  // i可以从0开始，因此不用+1；
-  const random = Math.floor( (Math.random()*(n-i)) +i );// [i,n]才能保证是可能性是n!
-  // swap交换
-  let temp=copy[random];
-  copy[random]=copy[i];
-  copy[i]=temp
+ randOne=(n, m)=> Math.floor(Math.random() * (m+1 - n)) + n;//[m,n]
 }
-return copy
-};
-
-// 获取闭区间 [n, m] 内的一个随机整数
-function randOne(n, m) { //[0,1]
-  return Math.floor(Math.random() * (m - n)) + n;
-};
-

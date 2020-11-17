@@ -10,5 +10,5 @@ ArrayBuffer：前端的一个通用的二进制缓冲区，类似数组，但在
 Buffer：Node.js提供的一个二进制缓冲区，常用来处理I/O操作
 */
 // const encode1=new Buffer.from("http://tinyurl.com/").toString('base64')  //aHR0cDovL3Rpbnl1cmwuY29tLw==
-// const encode1=new Buffer.from("http://tinyurl.com/","base64").toString()  // ��i��b�+���&
+// const encode1=new Buffer.from("http://tinyurl.com/","base64").toString()  // ��i��b�+���&  乱码
 // console.log(encode1);

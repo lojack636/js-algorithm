@@ -2,7 +2,7 @@
 
 function quickSort(arr){
   if(arr.length <= 1) return arr;
-  let right = [],left = [],keys = arr.shift();
+  let right = [],left = [],keys = arr.pop();
   for(let value of arr){
       if(value > keys){
           right.push(value)
@@ -14,9 +14,8 @@ function quickSort(arr){
 }
 
 
-
 let  list=[3,44,28,6,300,2,3,5,1999,39,20,11,5]
-// console.log(quickSort(list));
+console.log(quickSort(list));
 // console.log(quickSort([3,44,28,6,300,2,3,5,1999,39,20,11,5]));
 
 

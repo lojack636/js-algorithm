@@ -5,24 +5,9 @@ const mergeSort=(arr)=>{
   let middle=Math.floor(arr.length /2);
   let left=arr.slice(0,middle)
   let right=arr.slice(middle)
-  // console.log(right);
-  // 一直分到只有一位时候才return从而进行merge
-  // left先进行分解，直到分解为最后个位的时候return,然后开始分解right的数组，直到分解到最后一位
-  // * 第一次拆分后，迭代的时候都是先进行左边的迭代，迭代到return之后再进行右边数组的迭代
-//  console.log(mergeSort(right));
   const res=merge(mergeSort(left),mergeSort(right))
-  // console.log(res);
-  return res //只要return就会进merge,
-  // 先return了[1,2],[3,6]，左子数组的left和right都筛选完成之后再进行merge
-/*
-第一轮Left
-输入([1],[2]) =>得到[1,2]
-第二轮Left
-输入([3],[6]) =>得到[3,6]
-第二轮结束,Left分完了
-当左为[1,2]， 右为[3,6]时， concat之后就是[1,2,3,6],
-接下来迭代的时候，都是mergeSort(Left)大于两个形参，因此[1,2,3,6]一直空闲直到最后仅剩一项时继续合并
-*/
+  return res 
+
 
 }
 const merge=(left,right)=>{

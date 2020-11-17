@@ -56,15 +56,20 @@ export default class Dictionary {
     return obj
   }
 }
+/* 
 
-// let dictionary = new Dictionary()
-// dictionary.set('Honda', 'Civic')
-// dictionary.set('Honda1', 'CRV')
-// dictionary.set('Honda2', 'Fit')
-// dictionary.set('Honda3', 'Accord')
-// dictionary.set('Honda4', 'Type-R')
-// dictionary.remove('Honda4')
+let dictionary = new Dictionary()
+dictionary.set('Honda', 'Civic')
+dictionary.set('Honda1', 'CRV')
+dictionary.set('Honda2', 'Fit')
+dictionary.set('Honda3', 'Accord')
+dictionary.set('Honda4', 'Type-R')
+dictionary.remove('Honda4')
 
-// console.log(dictionary.keyValues())
-// console.log(dictionary.values())
-// console.log(dictionary.keyValues());
+console.log(dictionary.keyValues())
+console.log(dictionary.values())
+console.log(dictionary.keyValues());
+
+
+
+*/

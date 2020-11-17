@@ -1,4 +1,4 @@
-const str='http://fleetingsound.ca?name="tengZhang"'
+const str='http://fleetingsounds.ca?name="tengZhang"'
 const str2='Ja sjidjwiao!dwajdoij //dwawa';
 
 // * encodeURI()     decodeURI()    把字符串编码为 URI。

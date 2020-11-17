@@ -46,3 +46,4 @@ console.log(LRU.get(3));
 console.log(LRU.get(2));
 console.log(LRU.get(1));
 console.log(LRU.get(4));
+

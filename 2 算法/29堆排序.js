@@ -1,9 +1,3 @@
-const swap=(arr, a, b)=>{
-  if (a == b) { return; }
-  let temp = arr[a];
-  arr[a] = arr[b];
-  arr[b] = temp;
-}
 
 const maxHeapify=(Arr, i, size)=>{
   let l = 2 * i + 1, r = 2 * i + 2; // 左子节点为2i + 1，右子节点为2i + 2
@@ -17,7 +11,8 @@ const maxHeapify=(Arr, i, size)=>{
   }
   // 若标记有子节点，则交换父子位置，并递归计算
   if (largest !== i) {
-      swap(Arr, i, largest);
+    // swap
+      [Arr[i],Arr[largest]]=[Arr[largest],Arr[i]]
       maxHeapify(Arr, largest, size);
   }
 }
@@ -35,6 +30,8 @@ const heapSort=(iArr)=>{
       // 堆排序
       for (let j = 0; j < n; j++) {
           swap(iArr, 0, n - 1 - j)
+              // swap
+      [Arr[0],Arr[n - 1 - j]]=[Arr[n - 1 - j],Arr[0]]
           maxHeapify(iArr, 0, n - 2 - j);
       }
       return iArr;
