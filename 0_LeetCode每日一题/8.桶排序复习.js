@@ -9,14 +9,11 @@ function bucketSort(arr,num=5) {
   const buckets = new Array(count).fill(0).map(v=>new Array())
   for (let i = 0; i < len; i++) {
       let key = Math.floor((arr[i] - min) / num)
-
       buckets[key].push(arr[i])
-      //对桶中数据进行快速排序
-      buckets[key] = quickSort(buckets[key])
   }
   arr=[];
   for (let item of buckets) {
-      arr = arr.concat(item)
+      arr = arr.concat(quickSort(item))     //内部使用快速排序
   }
   return arr
 }
@@ -34,6 +31,7 @@ function quickSort(arr){
   }
   return quickSort(left).concat(keys,quickSort(right));
 }
+
 
 // console.log(bucketSort([3,44,28,6,300,2,3,5,1999,39,20,11,5]));
 console.log(bucketSort([3,44,28,6,300,2,3,5,1999,39,20,11,5],5));

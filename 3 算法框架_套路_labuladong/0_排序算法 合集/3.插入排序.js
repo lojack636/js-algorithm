@@ -1,18 +1,20 @@
-// function insertSort(arr){
-//   for(let i = 1;i < arr.length;i++){
-//       let j = i-1;
-//       // 之前的值大？
-//       if(arr[j]>arr[i]){
-//           let temp = arr[i];
-//           while(j >= 0 && temp < arr[j]){
-//               arr[j+1] = arr[j];
-//               j--;
-//           }
-//           arr[j+1] = temp;
-//       }
-//   }
-//   return arr;
-// }
+function insertSort(arr){
+  let len = arr.length;
+  if (!Array.isArray(arr) || len <= 1) return;
+  for(let i = 1;i < len;i++){
+      let j = i-1;
+      // 之前的值大？
+      if(arr[j]>arr[i]){
+          let temp = arr[i];
+          while(j >= 0 && temp < arr[j]){
+              arr[j+1] = arr[j];
+              j--;
+          }
+          arr[j+1] = temp;
+      }
+  }
+  return arr;
+}
 
 // > 每一步将一个待排序的记录，插入到前面已经排好序的有序序列中去，直到插完所有元素为止。
 
