@@ -60,6 +60,69 @@ This is a collection of personal algorithm training codes based on **JavaScript*
 
 
 
+
+
+## Data Structures
+
+In [Data Structures](https://github.com/JakeZT/js-algorithm/tree/master/1%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
+
+```js
+    0_Node中Buffer对象.js
+    0_基础_JS全局方法.js
+    0_基础_Map.js
+    0_基础_Math.js
+    0_基础_Number.js
+    0_基础_Set.js
+    0_基础_Symbol.js
+    0_基础_字符串方法.js
+    0_基础_对象Obj.js
+    0_基础_数组Array.js
+    0_基础_条件问题.js
+    0_基础_正则表达式.js
+    0_补充_算法方法知识点.js
+    AVL.html
+    AYL树_自平衡二叉树.js
+    temp.html
+    temp.js
+    二叉树 copy.html
+    二叉树.html
+    二叉树.js
+    二叉树_红黑树.html
+    二叉树_红黑树.js
+    双向链表.html
+    双向链表.js
+    双端队列.js
+    双端队列_对象实现.html
+    哈希表.js
+    哈希表_分离链接.js
+    哈希表_分离链表.html
+    图.js
+    图_BFS遍历_最短路径问题.js
+    图_DFS遍历_最短路径问题.js
+    图_拓扑排序.js
+    堆_大顶堆_and堆排序.js
+    堆_小顶堆.html
+    堆_小顶堆.js
+    字典.html
+    字典_Map类.js
+    字典_Obj类.js
+    循环链表.js
+    有序列表.js
+    栈.js
+    矩阵.js
+    递归.js
+    链表.html
+    链表.js
+    链表_新实现.html
+    链表_新实现.js
+    队列.js
+    集合_Obj类实现.js
+    集合_Set类实现.js
+    集合_Set结构直接实现.js
+```
+
+
+
 ## Main Categories
 
 ```js
@@ -110,7 +173,7 @@ This is a collection of personal algorithm training codes based on **JavaScript*
 
 ## Main Algorithm Framework
 
-In "[3 算法框架_套路_labuladong](https://github.com/JakeZT/js-algorithm/tree/master/3 算法框架_套路_labuladong)"
+In   [3 算法框架_套路_labuladong](https://github.com/JakeZT/js-algorithm/tree/master/3 算法框架_套路_labuladong)
 
 ```js
     0_学习刷题的框架思维.js
