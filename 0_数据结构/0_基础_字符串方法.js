@@ -52,6 +52,17 @@ const str4='A SDFaasasawcmnijidw123 20'
 console.log(str4.toLowerCase());// a sdfaasasawcmnijidw123 20
 console.log(str4.toUpperCase());// A SDFAASASAWCMNIJIDW123 20
 
+// substr VS substring
+// substring不指定end,则默认到最后
+str.substring(start,end) // [start, end), 返回新的字符串
+str.substring(start,end+1) // [start, end], 返回新的字符串
+str.substr(start ,length)
+/* 
+substr:
+如果start为负数，则start=str.length+start。
+如果 length 为 0 或负数，将返回一个空字符串。
+如果没有指定该参数，则子字符串将延续到stringObject的最后。
+*/
 // 去除两边空白
 let str5=' 123 ASA '
 console.log(str5.trim());//123 ASA

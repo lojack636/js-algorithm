@@ -22,7 +22,7 @@ console.log(temp.findIndex((val)=>{return val===7})); //找到index===6
 console.log(temp.slice(1));//从index==1取到最后  [1,2,3,4,5,6,7]
 console.log(temp.slice(-1));// -1为尾部第一个数组到最后，[7]
 console.log(temp.slice(-3));// -1为尾部第一个数组到最后，[5,6,7]
-console.log(temp.slice(1,3));// 从index==1截取到index==3，但index===3取不到
+console.log(temp.slice(1,3));// [1,3)
 
 console.log(temp.splice(0,3));//返回的是被删除的部分  [ 0, 1, 2 ]
 console.log(temp); //[ 3, 4, 5, 6, 7 ]

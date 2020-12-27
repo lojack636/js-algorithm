@@ -1,5 +1,4 @@
   // 最大公约数
-// 辗转相除
   function gcd(a,b){
     if(b == 0){return a};
     var r = a % b;

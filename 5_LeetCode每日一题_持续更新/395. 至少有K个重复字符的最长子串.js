@@ -14,6 +14,7 @@ s = "ababbc", k = 2
 var longestSubstring = function(s, k) {
   if (!s) return 0;
   const record = {};
+  
   for (let i of s) { record[i]=(record[i] || 0) + 1};
   const fail = Object.keys(record).filter(key => record[key] < k);
   if (fail.length===0) return s.length;//全部合格，返回

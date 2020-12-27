@@ -5,7 +5,7 @@ const reorganizeString = function (S) {
   let hashArr = new Array(26).fill(0)
   for (let i = 0; i < S.length; i++) {
     let item = hashArr[S[i].charCodeAt() - 97];
-    //--   !!item ? item.count++ : hashArr[S[i].charCodeAt()-97]={name:S[i],count:1}; //或者
+    // !!item ? item.count++ : hashArr[S[i].charCodeAt()-97]={name:S[i],count:1}; //或者
     (item && item.count++) || (hashArr[S[i].charCodeAt() - 97] = { name: S[i], count: 1 })
   }
   hashArr = hashArr.filter((v) => v != 0) //，过滤，把没出现的数字去掉，减少后面遍历次数
