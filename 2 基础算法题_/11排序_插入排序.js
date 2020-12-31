@@ -1,20 +1,17 @@
-const insertSort=(arr)=>{
-  const len=arr.length
-  let pointer,current;
-  for(let i=1;i<len;i++){
-    current=arr[i];
-    pointer=i
-    // 不能用if判断，这里需要持续的循环而不是条件判断
-    while(arr[pointer-1]>current){
-      arr[pointer]=arr[pointer-1]
-      pointer-=1
-    }
-    // 插入元素
-    // 
-    arr[pointer]=current;
-  }
-  return arr
+function insertSort(arr) {
+	let len = arr.length
+	if (!Array.isArray(arr) || len <= 1) return
+	for (let i = 1; i < len; i++) {
+		let j = i - 1
+		// 之前的值大？
+		if (arr[j] > arr[i]) {
+			let temp = arr[i]
+			while (j >= 0 && temp < arr[j]) {
+				arr[j + 1] = arr[j]
+				j--
+			}
+			arr[j + 1] = temp
+		}
+	}
+	return arr
 }
-
-let list=[-11,200,20,30,10,2,3,4,-10,-200]
-console.log(insertSort(list));
